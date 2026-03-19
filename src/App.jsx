@@ -648,7 +648,7 @@ function DashView({ balance, savings, filteredTxs, txSearch, setTxSearch, setSel
                     {tx.type === 'received' ? <ArrowDownLeft size={16} /> : <ArrowUpRight size={16} />}
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#0f172a', maxWidth: '160px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{tx.name}</div>
+                    <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#0f172a', maxWidth: '45vw', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{tx.name}</div>
                     <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.125rem' }}>{fmtDate(tx.date)}</div>
                     {tx.status === 'pending' && <div style={{ fontSize: '0.6875rem', color: '#d97706', fontWeight: 700 }}>Pending</div>}
                   </div>
@@ -673,15 +673,15 @@ function DashView({ balance, savings, filteredTxs, txSearch, setTxSearch, setSel
 function TransfersView({ filteredBanks, bankSearch, setBankSearch, setSelBank }) {
   return (
     <motion.div key="transfers" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.75rem', marginBottom: '1.5rem' }}>
         <div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em' }}>Global Transfers</h1>
           <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '0.25rem' }}>Domestic and international wire services.</p>
         </div>
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '260px' }}>
           <Search size={15} style={{ position: 'absolute', left: '0.875rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8', pointerEvents: 'none' }} />
           <input type="text" value={bankSearch} onChange={e => setBankSearch(e.target.value)} placeholder="Search by country, SWIFT..."
-            style={{ paddingLeft: '2.5rem', paddingRight: '1rem', paddingTop: '0.625rem', paddingBottom: '0.625rem', background: '#fff', border: '1px solid #f1f5f9', borderRadius: '0.875rem', fontSize: '0.8125rem', outline: 'none', width: '260px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }} />
+            style={{ paddingLeft: '2.5rem', paddingRight: '1rem', paddingTop: '0.625rem', paddingBottom: '0.625rem', background: '#fff', border: '1px solid #f1f5f9', borderRadius: '0.875rem', fontSize: '0.8125rem', outline: 'none', width: '100%', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }} />
         </div>
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem' }}>
@@ -830,7 +830,7 @@ function ProfileView({ handleSignOut }) {
           </div>
         </div>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+      <div className="profile-grid-2col">
         <div className="profile-card" style={{ padding: '1.5rem' }}>
           <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.5rem' }}>Account Type</div>
           <div style={{ fontSize: '1.125rem', fontWeight: 800, color: '#0f172a' }}>Premier Banking</div>
