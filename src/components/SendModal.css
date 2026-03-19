@@ -1,0 +1,6 @@
+/* Component-specific modal styles are in App.css, but we can add any additional styles here if needed */
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+}

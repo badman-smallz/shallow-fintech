@@ -1,0 +1,334 @@
+/* Authentication Pages Styling (Login & Signup) */
+
+.auth-container {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle Background Effects */
+.auth-container::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  opacity: 0.03;
+  border-radius: 50%;
+  top: -200px;
+  right: -200px;
+}
+
+.auth-container::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
+  opacity: 0.02;
+  border-radius: 50%;
+  bottom: -250px;
+  left: -150px;
+}
+
+/* Main Card */
+.auth-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 48px 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.4s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html[data-theme='light'] .auth-card {
+  border-color: #e0e0e0;
+}
+
+html[data-theme='dark'] .auth-card {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Card Header */
+.auth-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.auth-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Auth Form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.form-input {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+html[data-theme='light'] .form-input {
+  border-color: #ddd;
+  background: #f9fafb;
+}
+
+html[data-theme='dark'] .form-input {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg-secondary);
+  box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.08);
+}
+
+/* Password Wrapper for visibility toggle */
+.password-wrapper {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s;
+  font-size: 18px;
+}
+
+.password-toggle:hover {
+  color: var(--accent);
+}
+
+/* Submit Button */
+.auth-submit {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 8px;
+}
+
+.auth-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 142, 247, 0.25);
+}
+
+.auth-submit:active {
+  transform: translateY(0px);
+}
+
+.auth-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Links */
+.auth-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.auth-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.auth-footer a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Terms */
+.auth-terms {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Error Display */
+.auth-error {
+  background: rgba(255, 69, 58, 0.1);
+  border: 1px solid rgba(255, 69, 58, 0.3);
+  color: var(--red);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 32px 24px;
+  }
+
+  .auth-logo {
+    font-size: 24px;
+  }
+
+  .auth-subtitle {
+    font-size: 13px;
+  }
+
+  .form-input {
+    font-size: 16px;
+    padding: 14px 16px;
+  }
+
+  .auth-submit {
+    font-size: 15px;
+    padding: 14px 20px;
+  }
+}
+
+/* Dark Mode Adjustments */
+html[data-theme='dark'] .auth-container {
+  background: var(--bg-secondary);
+}
+
+html[data-theme='dark'] .auth-card {
+  background: var(--bg-primary);
+}
+
+/* Light Mode Specific */
+html[data-theme='light'] .auth-container {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+}
+
+html[data-theme='light'] .auth-card {
+  background: white;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme='light'] .form-input {
+  background: #f9fafb;
+}
+
+html[data-theme='light'] .form-input:focus {
+  background: white;
+}
