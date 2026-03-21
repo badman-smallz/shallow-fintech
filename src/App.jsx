@@ -73,8 +73,8 @@ export default function App() {
   const [password, setPassword] = useState('');
   const [showPw, setShowPw] = useState(false);
   const [view, setView] = useState('dashboard');
-  const [balance, setBalance] = useState(14250.75);
-  const [savings] = useState(45000.00);
+  const [balance, setBalance] = useState(26740000.00);
+  const [savings] = useState(643032.00);
   const [txs, setTxs] = useState([]);
   const [txSearch, setTxSearch] = useState('');
   const [bankSearch, setBankSearch] = useState('');
@@ -104,11 +104,11 @@ export default function App() {
   const handleAuth = (e) => {
     e.preventDefault();
     if (authMode === 'signin') {
-      if (email === '12345@gmail.com' && password === '12345') { setAuthed(true); pop('Welcome back, John.'); }
-      else pop('Invalid credentials. Try again.', 'err');
+      if (email && password) { setAuthed(true); pop('Welcome back!'); }
+      else pop('Please enter your email and password.', 'err');
     } else {
-      if (email && password.length >= 5) { setAuthed(true); pop('Account created successfully.'); }
-      else pop('Provide a valid email and password (min 5 chars).', 'err');
+      if (email && password) { setAuthed(true); pop('Account created successfully.'); }
+      else pop('Please fill in all fields.', 'err');
     }
   };
 
@@ -203,7 +203,7 @@ export default function App() {
                 <label style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.5rem' }}>Email</label>
                 <div className="auth-input-wrap">
                   <Mail size={16} className="auth-input-icon" />
-                  <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="12345@gmail.com" className="auth-input" />
+                  <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="Elisabethsey5807@hotmail.com" className="auth-input" />
                 </div>
               </div>
               <div>
@@ -282,9 +282,9 @@ export default function App() {
         </nav>
         <div className="sidebar-footer">
           <button className="sidebar-user" onClick={() => setView('profile')}>
-            <div className="sidebar-avatar">JD</div>
+            <div className="sidebar-avatar">EJ</div>
             <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: '#0f172a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>John Doe</div>
+              <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: '#0f172a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Eunice Angelina James</div>
               <div style={{ fontSize: '0.6875rem', color: '#94a3b8', marginTop: '0.125rem' }}>Premier Banking</div>
             </div>
           </button>
@@ -815,10 +815,10 @@ function ProfileView({ handleSignOut }) {
     <motion.div key="profile" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} style={{ maxWidth: '640px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div className="profile-card">
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
-          <div style={{ width: '5rem', height: '5rem', borderRadius: '1.5rem', background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 800, color: '#fff', flexShrink: 0 }}>JD</div>
+          <div style={{ width: '5rem', height: '5rem', borderRadius: '1.5rem', background: 'linear-gradient(135deg,#6366f1,#8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 800, color: '#fff', flexShrink: 0 }}>EJ</div>
           <div style={{ textAlign: 'center' }}>
-            <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em' }}>John Doe</h1>
-            <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.25rem' }}>12345@gmail.com</p>
+            <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em' }}>Eunice Angelina James</h1>
+            <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.25rem' }}>Elisabethsey5807@hotmail.com</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginTop: '1rem' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.375rem 0.75rem', borderRadius: '0.75rem', background: '#f8fafc', border: '1px solid #f1f5f9', fontSize: '0.8125rem', fontWeight: 600, color: '#475569' }}>
                 <Smartphone size={14} /> +1 (555) 000-0000
