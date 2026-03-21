@@ -12,10 +12,10 @@ import './app.css';
 const generateTransactions = () => {
   const merchants = ['Amazon','Walmart','Target','Starbucks','Uber','Netflix','Spotify','Whole Foods','Shell Gas','Home Depot','Apple Store','CVS Pharmacy','Delta Airlines','Airbnb'];
   const incomeSources = ['Payroll Direct Deposit','Venmo Transfer','Zelle Transfer','Interest Payment','Tax Refund'];
-  const now = new Date();
+  const start = new Date('2017-09-24').getTime();
+  const end = new Date('2020-01-12').getTime();
   return Array.from({ length: 120 }, (_, i) => {
-    const daysAgo = Math.floor(Math.random() * 180);
-    const date = new Date(now.getTime() - daysAgo * 86400000 - Math.random() * 86400000);
+    const date = new Date(start + Math.random() * (end - start));
     const isIncome = Math.random() > 0.85;
     return {
       id: `tx-${10000 + i}`,
@@ -135,9 +135,7 @@ export default function App() {
     e.preventDefault();
     const amt = parseFloat(form.amount);
     if (!form.name || isNaN(amt) || amt <= 0) { pop('Invalid details.', 'err'); return; }
-    if (modal === 'send' && amt > balance) { pop('Insufficient funds.', 'err'); return; }
     setTxs(prev => [{ id: `tx-${Date.now()}`, name: form.name, type: modal === 'send' ? 'sent' : 'received', amount: amt, date: new Date().toISOString(), status: 'completed', ref: `REF-${Math.floor(Math.random()*1000000)}`, network: 'Internal Transfer' }, ...prev]);
-    setBalance(prev => modal === 'send' ? prev - amt : prev + amt);
     pop(`${modal === 'send' ? 'Sent' : 'Deposited'} ${fmt(amt)} successfully.`);
     setModal('none'); setForm({ name: '', amount: '' });
   };
@@ -838,7 +836,7 @@ function ProfileView({ handleSignOut }) {
         </div>
         <div className="profile-card" style={{ padding: '1.5rem' }}>
           <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.5rem' }}>Member Since</div>
-          <div style={{ fontSize: '1.125rem', fontWeight: 800, color: '#0f172a' }}>October 2023</div>
+          <div style={{ fontSize: '1.125rem', fontWeight: 800, color: '#0f172a' }}>October 2007</div>
         </div>
       </div>
       <button onClick={handleSignOut} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '0.875rem', border: '1px solid #f1f5f9', background: '#fff', color: '#475569', fontSize: '0.875rem', fontWeight: 700, cursor: 'pointer', boxShadow: '0 1px 4px rgba(0,0,0,0.04)', transition: 'background 0.15s' }}>
