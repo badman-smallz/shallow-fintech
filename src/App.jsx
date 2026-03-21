@@ -549,27 +549,15 @@ function DashView({ balance, savings, filteredTxs, txSearch, setTxSearch, setSel
           </div>
         </div>
 
-        {/* Savings + mini stats */}
+        {/* Savings */}
         <div className="savings-panel">
-          <div className="savings-card">
+          <div className="savings-card" style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
               <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#64748b' }}>High Yield Savings</span>
               <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: '#059669', background: '#d1fae5', padding: '0.2rem 0.5rem', borderRadius: '999px' }}>4.25% APY</span>
             </div>
             <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em' }}>{fmt(savings)}</div>
             <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.375rem', fontFamily: 'monospace' }}>•••• 8901</div>
-          </div>
-          <div className="mini-stats">
-            <div className="mini-stat" style={{ background: '#fff7ed' }}>
-              <div style={{ fontSize: '0.6875rem', color: '#92400e', fontWeight: 600, marginBottom: '0.5rem' }}>Spent</div>
-              <div style={{ fontSize: '1.125rem', fontWeight: 800, color: '#c2410c' }}>$3,240</div>
-              <div style={{ fontSize: '0.6875rem', color: '#d97706', marginTop: '0.25rem' }}>this month</div>
-            </div>
-            <div className="mini-stat" style={{ background: '#f0fdf4' }}>
-              <div style={{ fontSize: '0.6875rem', color: '#14532d', fontWeight: 600, marginBottom: '0.5rem' }}>Income</div>
-              <div style={{ fontSize: '1.125rem', fontWeight: 800, color: '#15803d' }}>$8,500</div>
-              <div style={{ fontSize: '0.6875rem', color: '#16a34a', marginTop: '0.25rem' }}>this month</div>
-            </div>
           </div>
         </div>
       </div>
