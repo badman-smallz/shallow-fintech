@@ -203,7 +203,7 @@ export default function App() {
                 <label style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.5rem' }}>Email</label>
                 <div className="auth-input-wrap">
                   <Mail size={16} className="auth-input-icon" />
-                  <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="Elisabethsey5807@hotmail.com" className="auth-input" />
+                  <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter your email" className="auth-input" />
                 </div>
               </div>
               <div>
