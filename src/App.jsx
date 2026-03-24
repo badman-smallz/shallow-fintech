@@ -10,21 +10,25 @@ import './app.css';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const generateTransactions = () => {
+  // Seeded PRNG so transactions never change on refresh
+  let seed = 20200919;
+  const rand = () => { seed = (seed * 1664525 + 1013904223) & 0xffffffff; return (seed >>> 0) / 0xffffffff; };
+
   const merchants = ['Amazon','Walmart','Target','Starbucks','Uber','Netflix','Spotify','Whole Foods','Shell Gas','Home Depot','Apple Store','CVS Pharmacy','Delta Airlines','Airbnb'];
   const incomeSources = ['Payroll Direct Deposit','Venmo Transfer','Zelle Transfer','Interest Payment','Tax Refund'];
-  const start = new Date('2017-09-24').getTime();
-  const end = new Date('2020-01-12').getTime();
+  const start = new Date('2020-09-19').getTime();
+  const end = new Date('2025-08-19').getTime();
   return Array.from({ length: 120 }, (_, i) => {
-    const date = new Date(start + Math.random() * (end - start));
-    const isIncome = Math.random() > 0.85;
+    const date = new Date(start + rand() * (end - start));
+    const isIncome = rand() > 0.85;
     return {
       id: `tx-${10000 + i}`,
-      name: isIncome ? incomeSources[Math.floor(Math.random() * incomeSources.length)] : merchants[Math.floor(Math.random() * merchants.length)],
+      name: isIncome ? incomeSources[Math.floor(rand() * incomeSources.length)] : merchants[Math.floor(rand() * merchants.length)],
       type: isIncome ? 'received' : 'sent',
-      amount: parseFloat((isIncome ? Math.random() * 4000 + 500 : Math.random() * 150 + 5).toFixed(2)),
+      amount: parseFloat((isIncome ? rand() * 4000 + 500 : rand() * 150 + 5).toFixed(2)),
       date: date.toISOString(),
-      status: Math.random() > 0.95 ? 'pending' : 'completed',
-      ref: `REF-${Math.floor(Math.random() * 100000000)}`,
+      status: rand() > 0.95 ? 'pending' : 'completed',
+      ref: `REF-${Math.floor(rand() * 100000000)}`,
       network: isIncome ? 'ACH' : 'Visa Debit 4567',
     };
   }).sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -133,10 +137,6 @@ export default function App() {
 
   const submitTx = (e) => {
     e.preventDefault();
-    const amt = parseFloat(form.amount);
-    if (!form.name || isNaN(amt) || amt <= 0) { pop('Invalid details.', 'err'); return; }
-    setTxs(prev => [{ id: `tx-${Date.now()}`, name: form.name, type: modal === 'send' ? 'sent' : 'received', amount: amt, date: new Date().toISOString(), status: 'completed', ref: `REF-${Math.floor(Math.random()*1000000)}`, network: 'Internal Transfer' }, ...prev]);
-    pop(`${modal === 'send' ? 'Sent' : 'Deposited'} ${fmt(amt)} successfully.`);
     setModal('none'); setForm({ name: '', amount: '' });
   };
 
@@ -565,8 +565,8 @@ function DashView({ balance, savings, filteredTxs, txSearch, setTxSearch, setSel
       {/* Quick actions */}
       <div className="quick-actions">
         {[
-          { label: 'Transfer', icon: ArrowUpRight, action: () => setModal('send'), bg: '#eef2ff', color: '#6366f1' },
-          { label: 'Deposit', icon: ArrowDownLeft, action: () => setModal('request'), bg: '#f5f3ff', color: '#7c3aed' },
+          { label: 'Transfer', icon: ArrowUpRight, action: () => {}, bg: '#eef2ff', color: '#6366f1' },
+          { label: 'Deposit', icon: ArrowDownLeft, action: () => {}, bg: '#f5f3ff', color: '#7c3aed' },
           { label: 'Pay Bills', icon: CreditCard, action: () => {}, bg: '#eff6ff', color: '#2563eb' },
           { label: 'Invest', icon: Activity, action: () => {}, bg: '#f0fdf4', color: '#16a34a' },
         ].map(({ label, icon: Icon, action, bg, color }) => (
